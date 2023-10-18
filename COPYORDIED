@@ -23,13 +23,13 @@ VisualsTab:AddToggle({
     Flag = "KeyToggle",
     Save = true,
 	Callback = function(Value)
-		for i,v in pairs(DoorChams) do
+		for i,v in pairs(KeyChams) do
             v.Enabled = Value
         end
 	end    
 })
 
-local function ApplyDoorChams(inst)
+local function ApplyKeyChams(inst)
     wait()
     local Cham = Instance.new("Highlight")
     Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
@@ -38,24 +38,24 @@ local function ApplyDoorChams(inst)
     Cham.OutlineColor = Color3.new(0.792156, 0.792156, 0.792156)
     Cham.Parent = game:GetService("CoreGui")
     Cham.Adornee = inst
-    Cham.Enabled = OrionLib.Flags["DoorToggle"].Value
+    Cham.Enabled = OrionLib.Flags["KeyToggle"].Value
     Cham.RobloxLocked = true
     return Cham
 end
 
-local DoorCoroutine = coroutine.create(function()
+local KeyCoroutine = coroutine.create(function()
     workspace.CurrentRooms.DescendantAdded:Connect(function(inst)
-        if inst.Name == "Door" then
-            table.insert(DoorChams,ApplyDoorChams(inst))
+        if inst.Name == "KeyObtain" then
+            table.insert(KeyChams,ApplyKeyChams(inst))
         end
     end)
 end)
 for i,v in ipairs(workspace:GetDescendants()) do
-    if v.Name == "Door" then
-        table.insert(DoorChams,ApplyDoorChams(v))
+    if v.Name == "KeyObtain" then
+        table.insert(KeyChams,ApplyKeyChams(v))
     end
 end
-coroutine.resume(DoorCoroutine)
+coroutine.resume(KeyCoroutine)
 
 local BookChams = {}
 VisualsTab:AddToggle({
