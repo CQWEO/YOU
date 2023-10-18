@@ -185,7 +185,7 @@ GameTab:AddButton({
 	Name = "Skip level",
 	Callback = function()
         pcall(function()
-            local HasKey = true
+            local HasKey = false
             local CurrentDoor = workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door")
             for i,v in ipairs(CurrentDoor.Parent:GetDescendants()) do
                 if v.Name == "KeyObtain" then
@@ -222,7 +222,7 @@ local AutoSkipCoro = coroutine.create(function()
             task.wait()
             pcall(function()
             if OrionLib.Flags["AutoSkip"].Value == true and game:GetService("ReplicatedStorage").GameData.LatestRoom.Value < 100 then
-                local HasKey = true
+                local HasKey = false
                 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom.Value
                 local CurrentDoor = workspace.CurrentRooms[tostring(LatestRoom)]:WaitForChild("Door")
                 for i,v in ipairs(CurrentDoor.Parent:GetDescendants()) do
@@ -324,7 +324,7 @@ game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(desce
     end
 end)
 
-game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
+game:GetService("ProximityPrompt").PromptButtonHoldBegan:Connect(function(prompt)
     if OrionLib.Flags["InstantToggle"].Value == true then
         fireproximityprompt(prompt)
     end
@@ -377,7 +377,7 @@ local NotificationCoroutine = coroutine.create(function()
         end
     end)
     workspace.ChildAdded:Connect(function(inst)
-        if inst.Name == "RushMoving" and OrionLib.Flags["MobToggle"].Value == true then
+        if inst.Name == "RushNew" and OrionLib.Flags["MobToggle"].Value == true then
             if OrionLib.Flags["AvoidRushToggle"].Value == true then
                 OrionLib:MakeNotification({
                     Name = "Warning!",
@@ -435,7 +435,7 @@ local CreditsTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-CreditsTab:AddParagraph("Credits to","OminousVibes - (Got most of the ideas from their thread, check it out! - https://v3rmillion.net/showthread.php?tid=1184088)")
+CreditsTab:AddParagraph("Credits to","Script Creative By Tiến")
 
 coroutine.resume(NotificationCoroutine)
 
