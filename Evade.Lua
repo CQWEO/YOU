@@ -6,7 +6,7 @@ local Light = game:GetService("Lighting")
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 OrionLib:MakeNotification({
     Name = "You Hub",
-    Content = "you hub is Loading.",
+    Content = "You Hub is Loading.",
     Image = "rbxassetid://4483345998",
     Time = 4
 })
@@ -18,7 +18,7 @@ OrionLib:MakeNotification({
     Image = "rbxassetid://4483345998",
     Time = 2
 })
-local Window = OrionLib:MakeWindow({Name = "You Hub |Evade|", HidePremium = false,IntroText = "Evade v1.5", SaveConfig = false, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "You Hub", HidePremium = false,IntroText = "Evade v1.5", SaveConfig = false, ConfigFolder = "OrionTest"})
  
 --functions and shit
 getgenv().money = true
@@ -177,7 +177,7 @@ end
 --tabs
  
 local MainTab= Window:MakeTab({
-	Name = "Main features",
+	Name = "Main",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -224,83 +224,6 @@ MainTab:AddToggle({
 	Callback = function(Value)
         Settings.afkfarm = Value
 	end    
-})
- 
---sliders
-local MainTab3 = MainTab:AddSection({
-	Name = "Sliders"
-})
- 
-local Misctab5 = MiscTab:AddSection({
-	Name = "Sliders"
-})
- 
-local TargetWalkspeed
-MainTab:AddSlider({
-	Name = "Speed",
-	Min = 0,
-	Max = 250,
-	Default = 0,
-	Color = Color3.fromRGB(128, 128, 128),
-	Increment = 1,
-	ValueName = "Walk Speed",
-	Callback = function(Value)
-		TargetWalkspeed = Value
-	end   
-})
- 
-MainTab:AddSlider({
-    Name = "Hip height",
-    Min = -1.40,
-    Max = 100,
-    Default = 0,
-    Color = Color3.fromRGB(128, 128, 128),
-    Increment = 1,
-	ValueName = "Hip Height",
-    Callback = function(HipValue)
-        game.Players.LocalPlayer.Character.Humanoid.HipHeight = HipValue
-    end    
-})
- 
-MainTab:AddSlider({
-	Name = "Fov Slider",
-	Min = 1,
-	Max = 120,
-	Default = 120,
-	Color = Color3.fromRGB(128, 128, 128),
-	Increment = 1,
-	ValueName = "Fov",
-	Callback = function(Fov)
-        local ohString1 = "FieldOfView"
-        local ohNumber2 = Fov
-        game:GetService("ReplicatedStorage").Events.UpdateSetting:FireServer(ohString1, ohNumber2)
-    end
-})
- 
-MainTab:AddSlider({
-	Name = "Jump Power",
-	Min = 0,
-	Max = 120,
-	Default = 0,
-	Color = Color3.fromRGB(128, 128, 128),
-	Increment = 1,
-	ValueName = "Jump",
-	Callback = function(Value)
-		Settings.Jump = Value
-    end
-})
- 
-MiscTab:AddSlider({
-	Name = "Day & Night Slider",
-	Min = 0,
-	Max = 24,
-	Default = 6,
-	Color = Color3.fromRGB(128, 128, 128),
-	Increment = 0.1,
-	ValueName = "Time",
-	Callback = function(Time)
-        game.Lighting.ClockTime = Time
-    end
 })
  
 --toggles
@@ -365,6 +288,19 @@ FunTab:AddToggle({
         autowistlefunction()
 	end    
 })
+
+MainTab:AddSlider({
+	Name = "Day & Night Slider",
+	Min = 0,
+	Max = 24,
+	Default = 6,
+	Color = Color3.fromRGB(128, 128, 128),
+	Increment = 0.1,
+	ValueName = "Time",
+	Callback = function(Time)
+        game.Lighting.ClockTime = Time
+    end
+})
  
 --buttons
 local FunTab3 = FunTab:AddSection({
@@ -383,7 +319,7 @@ spyOnMyself = false
 public = false
 publicItalics = true
 privateProperties = {
-	Color = Color3.fromRGB(0,255,255); 
+	Color = Color3.new(1,1,1); 
 	Font = Enum.Font.SourceSansBold;
 	TextSize = 18;
 }
@@ -400,7 +336,7 @@ local function onChatted(p,msg)
 		if p==player and msg:lower():sub(1,4)=="/spy" then
 			enabled = not enabled
 			wait(0.3)
-			privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+			privateProperties.Text = "[System]:One god of Roblox appeared"
 			StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
 		elseif enabled and (spyOnMyself==true or p~=player) then
 			msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
