@@ -239,7 +239,7 @@ MainTab:AddToggle({
 })
  
 FunTab:AddToggle({
-	Name = "Spam Chat",
+	Name = "LOL Chat",
 	Default = false,
 	Callback = function(Value)
         autochat = Value
@@ -257,7 +257,7 @@ FunTab:AddToggle({
 })
  
 MainTab:AddToggle({
-	Name = "Auto respawn",
+	Name = "Auto Respawn",
 	Default = false,
 	Callback = function(Value)
         Settings.AutoRespawn = Value
@@ -296,7 +296,7 @@ local MiscTab2 = MiscTab:AddSection({
 })
  
 MiscTab:AddButton({
-    Name = "Chat Spy",
+    Name = "Chat LOL",
     Callback = function()
         enabled = true
 spyOnMyself = false
@@ -364,7 +364,7 @@ OrionLib:MakeNotification({
       end    
 })
  
-ESPTab:AddButton({
+ESPTab:AddToggle({
 	Name = "Player Esp",
 	Callback = function()
 		local c = workspace.CurrentCamera
@@ -458,13 +458,19 @@ ESPTab:AddButton({
   	end    
 })
  
-MiscTab:AddButton({
+MainTab:AddToggle({
 	Name = "Inf Jump",
 	Callback = function()
         local InfiniteJumpEnabled = true
         game:GetService("UserInputService").JumpRequest:connect(function()
             if InfiniteJumpEnabled then
                 game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+else
+local InfiniteJumpEnabled = false
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if InfiniteJumpEnabled then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+
             end
         end)
         OrionLib:MakeNotification({
@@ -533,8 +539,8 @@ MiscTab:AddButton({
   	end    
 })
  
-FunTab:AddButton({
-    Name = "Free cam (Shift + P)",
+MainTab:AddButton({
+    Name = "Enable Freecam (Shift + P)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Robobo2022/script/main/Freecam.lua"))()
         OrionLib:MakeNotification({
