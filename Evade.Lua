@@ -194,12 +194,6 @@ local ESPTab = Window:MakeTab({
     PremiumOnly = false
 })
  
-local TeleportTab= Window:MakeTab({
-    Name = "Teleport",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
- 
 local FunTab= Window:MakeTab({
     Name = "Fun",
 	Icon = "rbxassetid://4483345998",
@@ -207,7 +201,7 @@ local FunTab= Window:MakeTab({
 })
  
 local MiscTab3 = MainTab:AddSection({
-	Name = "Auto Farms"
+	Name = "Misc"
 })
  
 MainTab:AddToggle({
@@ -224,16 +218,6 @@ MainTab:AddToggle({
 	Callback = function(Value)
         Settings.afkfarm = Value
 	end    
-})
- 
---toggles
- 
-local FunTab2 = FunTab:AddSection({
-	Name = "Toggles"
-})
- 
-local MiscTab3 = MainTab:AddSection({
-	Name = "Toggles"
 })
  
 MainTab:AddToggle({
@@ -366,7 +350,7 @@ end
 Players.PlayerAdded:Connect(function(p)
 	p.Chatted:Connect(function(msg) onChatted(p,msg) end)
 end)
-privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+privateProperties.Text = "{LOL "..(enabled and "EN" or "DIS").."ABLED}"
 StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
 local chatFrame = player.PlayerGui.Chat.Frame
 chatFrame.ChatChannelParentFrame.Visible = true
@@ -559,61 +543,6 @@ FunTab:AddButton({
 			Image = "rbxassetid://4483345998",
 			Time = 2
 		}) 
-      end    
-})
- 
-TeleportTab:AddButton({
-    Name = "Main Game",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 9872472334
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-      end    
-})
- 
- 
-TeleportTab:AddButton({
-    Name = "Casual",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 10662542523
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-      end    
-})
- 
-TeleportTab:AddButton({
-    Name = "Social Space",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 10324347967
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-      end    
-})
- 
-TeleportTab:AddButton({
-    Name = "Big Team",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 10324346056
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-      end    
-})
- 
-TeleportTab:AddButton({
-    Name = "Team DeathMatch",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 110539706691
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-      end    
-})
- 
-TeleportTab:AddButton({
-    Name = "Vc Only",
-    Callback = function()
-        local TeleportService = game:GetService('TeleportService')
-        GameId = 10808838353
-        TeleportService:Teleport(GameId, game.Players.LocalPlayer)
       end    
 })
  
